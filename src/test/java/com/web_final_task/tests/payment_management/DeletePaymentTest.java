@@ -28,23 +28,23 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @Service(value = "Payment management")
 @ExtendWith({WireMockServerExtension.class})
 @DisplayName("Delete payments")
-class DeletePayment extends BaseRestTest {
+class DeletePaymentTest extends BaseRestTest {
 
     @Test
     @Issue("CP-12")
     @Severity(SeverityLevel.BLOCKER)
     @Description("Delete all payments by valid user id")
     void deleteAllPaymentsByUserId() {
-        final Payment generatedPayments = PaymentGenerator.generatePayment(true);
+        final String expectedResult = "The Payment removed";
+        final Payment generatedPayments = PaymentGenerator.generatePayment(false);
         paymentRepository.save(generatedPayments);
-
         stubFor(delete("/payment/" + generatedPayments.getId())
                 .willReturn(aResponse()
                         .withStatus(200)
-                        .withBody("the Payment removed")));
+                        .withBody(expectedResult)));
 
         final Response response = paymentService.deletePaymentByUserId(generatedPayments.getId(), 200);
-        assertThat(response.getBody().asString()).isEqualTo("the Payment removed");
+        assertThat(response.getBody().asString()).isEqualTo(expectedResult);
     }
 
     @Test
@@ -53,13 +53,15 @@ class DeletePayment extends BaseRestTest {
     @Description("Delete all Payments by invalid user id")
     void deleteAllPaymentsByInvalidUserId() {
         final long invalidUserId = -2;
+        final String validationException = "Validation exception";
+
         stubFor(delete("/payment/" + invalidUserId)
                 .willReturn(aResponse()
                         .withStatus(400)
-                        .withBody("Validation exception")));
+                        .withBody(validationException)));
 
         final Response response = paymentService.deletePaymentByUserId(invalidUserId, 400);
-        assertThat(response.getBody().asString()).isEqualTo("Validation exception");
+        assertThat(response.getBody().asString()).isEqualTo(validationException);
     }
 
     @Test
@@ -68,12 +70,13 @@ class DeletePayment extends BaseRestTest {
     @Description("Delete all Payments by invalid user id")
     void deleteAllPaymentsByNoneExistUserId() {
         final long noneExistUserId = 313213;
+        final String paymentNotFound = "Not Found";
         stubFor(delete("/payment/" + noneExistUserId)
                 .willReturn(aResponse()
                         .withStatus(404)
-                        .withBody("Not Found")));
+                        .withBody(paymentNotFound)));
 
         final Response response = paymentService.deletePaymentByUserId(noneExistUserId, 404);
-        assertThat(response.getBody().asString()).isEqualTo("Not Found");
+        assertThat(response.getBody().asString()).isEqualTo(paymentNotFound);
     }
 }

@@ -1,6 +1,5 @@
 package com.web_final_task.tests.payment_management;
 
-import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder;
 import com.web_final_task.annotations.Service;
 import com.web_final_task.annotations.extentions.WireMockServerExtension;
 import com.web_final_task.entity.Payment;
@@ -18,8 +17,6 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import java.io.File;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.containing;
@@ -41,17 +38,10 @@ class AddNewPaymentTests extends BaseRestTest {
     @SneakyThrows
     void shouldAddNewPayment() {
         final Payment generatedPayment = PaymentGenerator.generatePayment(true);
-        objectMapper.writeValue(new File(GENERATED_JSON_PATH +
-                generatedPayment.getUserId().toString() + ".json"), generatedPayment);
-
-        ResponseDefinitionBuilder updatedPaymentResponse = new ResponseDefinitionBuilder();
-        updatedPaymentResponse.withStatus(201);
-        updatedPaymentResponse.withBodyFile(PATH_TO_PAYMENT_JSONS + generatedPayment.getUserId().toString() + ".json");
-        updatedPaymentResponse.withHeader("Content-Type", "application/json");
 
         stubFor(post("/payment/")
                 .withRequestBody(containing(generatedPayment.getUserId().toString()))
-                .willReturn(updatedPaymentResponse));
+                .willReturn(aResponse().proxiedFrom("http://localhost:8282/")));
 
         Payment newPayment = paymentService.createNewPayment(generatedPayment, 201).as(Payment.class);
 
@@ -66,18 +56,9 @@ class AddNewPaymentTests extends BaseRestTest {
     @SneakyThrows
     void shouldNotAddNewPaymentUnverifiedUser() {
         final Payment generatedPayment = PaymentGenerator.generatePayment(false);
-        objectMapper.writeValue(new File(GENERATED_JSON_PATH +
-                generatedPayment.getUserId().toString() + ".json"), generatedPayment);
-
-        ResponseDefinitionBuilder updatedPaymentResponse = new ResponseDefinitionBuilder();
-        updatedPaymentResponse.withStatus(201);
-        updatedPaymentResponse.withBodyFile(PATH_TO_PAYMENT_JSONS + generatedPayment.getUserId().toString() + ".json");
-        updatedPaymentResponse.withHeader("Content-Type", "application/json");
-
         stubFor(post("/payment/")
                 .withRequestBody(containing(generatedPayment.getUserId().toString()))
-                .willReturn(updatedPaymentResponse));
-
+                .willReturn(aResponse().proxiedFrom("http://localhost:8282/")));
 
         final Payment newPayment = paymentService.createNewPayment(generatedPayment, 201).as(Payment.class);
 
@@ -95,7 +76,7 @@ class AddNewPaymentTests extends BaseRestTest {
         Payment generatedPayment = PaymentGenerator.generatePaymentWithCustomCVV(invalidCvv);
 
         stubFor(post("/payment/")
-                .withRequestBody(containing(generatedPayment.getCvv()))
+                .withRequestBody(containing(invalidCvv))
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
                         .withStatus(405)

@@ -20,7 +20,7 @@ ext {
     wiremockVersion = "2.28.0"
     assertJVersion = "3.19.0"
     slfjSimleVersion = "1.7.30"
-    allureVersion = "2.13.9"
+    allureVersion = "2.14.0"
     fakerVersion = "1.0.1"
     junitVersion = "5.7.1"
     jdbcVersion = "5.3.9"

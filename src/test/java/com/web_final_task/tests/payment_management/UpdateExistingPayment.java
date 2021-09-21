@@ -86,7 +86,6 @@ class UpdateExistingPayment extends BaseRestTest {
     @Severity(SeverityLevel.BLOCKER)
     @Description("Update payment with none existed id")
     @SneakyThrows
-    @ExtendWith({WireMockServerExtension.class})
     void updatePaymentWithNoneExistedId() {
         final String responseMessage = "Payment was not found";
         final Payment payment = PaymentGenerator.generatePayment(true);
