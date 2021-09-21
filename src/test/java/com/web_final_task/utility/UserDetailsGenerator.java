@@ -33,26 +33,6 @@ public class UserDetailsGenerator {
                 .build();
     }
 
-
-    @SneakyThrows
-    public static CreateUserRequest generateWithValidDate() {
-        final int year = getFakerWithDefaultLocale().number().numberBetween(1990, 2019);
-        final int month = getFakerWithDefaultLocale().number().numberBetween(1, 12);
-        final int day = getFakerWithDefaultLocale().number().numberBetween(1, 31);
-
-        final LocalDate localDate = LocalDate.of(year, month, day);
-        final XMLGregorianCalendar birthday = DateConvertor.ConvertBirthdayToXMLGregorianCalendar(localDate);
-
-        return CreateUserRequest.builder()
-                .email(getFakerWithDefaultLocale().internet().emailAddress())
-                .name(getFakerWithDefaultLocale().name().firstName())
-                .birthday(birthday)
-                .lastName(getFakerWithDefaultLocale().name().lastName())
-                .payments(createListOfPayment(1))
-                .addresses(createListOfAddress(1))
-                .build();
-    }
-
     @SneakyThrows
     public static CreateUserRequest generateWithoutPaymentsAndAddresses() {
         final int year = getFakerWithDefaultLocale().number().numberBetween(1990, 2019);

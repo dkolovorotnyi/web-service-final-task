@@ -23,18 +23,6 @@ public class PaymentGenerator {
                 .verified(verified)
                 .build();
     }
-    public static Payment generatePaymentCustomExpiryMonthAndExpiryYear(int expiryMonth, int expiryYear) {
-        return Payment.builder()
-                .id(Long.parseLong(getFakerWithDefaultLocale().number().digits(1)))
-                .userId(Long.valueOf(getFakerWithDefaultLocale().number().digits(1)))
-                .cardHolder(getFakerWithDefaultLocale().artist().name().toUpperCase(Locale.US))
-                .cardNumber(getFakerWithDefaultLocale().finance().creditCard())
-                .cvv(valueOf(getFakerWithDefaultLocale().number().randomNumber(9, false)))
-                .expiryMonth(expiryMonth)
-                .expiryYear(expiryYear)
-                .verified(false)
-                .build();
-    }
 
     public static Payment generatePaymentWithCustomCVV(String cvv) {
         return Payment.builder()
