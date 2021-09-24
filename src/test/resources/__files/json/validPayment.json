@@ -1,0 +1,12 @@
+[
+  {
+    "id": 613,
+    "userId": 900,
+    "cardNumber": "6011-6284-9673-8422-8902",
+    "expiryYear": 12,
+    "expiryMonth": 12,
+    "cvv": "139902934",
+    "cardHolder": "VINCENT",
+    "verified": true
+  }
+]

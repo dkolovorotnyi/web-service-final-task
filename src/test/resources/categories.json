@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Skipped Tests By @Disabled - Definition",
+    "matchedStatuses": ["skipped"],
+    "messageRegex": ".*@Disabled.*"
+  },
+  {
+    "name": "Error with saving user's payments",
+    "messageRegex": ".* Can not save user payments!.*",
+    "matchedStatuses": ["broken", "failed"]
+  },
+  {
+    "name": "Error with saving address into database",
+    "messageRegex": ".* SQL.*",
+    "matchedStatuses": ["broken"]
+  },
+  {
+    "name": "Error with removing address into database",
+    "messageRegex": ".* Can not delete user's payments and/or addresses.*",
+    "matchedStatuses": ["broken"]
+  }
+]
