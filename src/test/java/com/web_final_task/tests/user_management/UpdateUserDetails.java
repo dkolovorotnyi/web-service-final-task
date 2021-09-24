@@ -26,7 +26,7 @@ class UpdateUserDetails extends BaseRestTest {
 
     @Test
     @Issue("CP-19")
-    @Story("User Details")
+    @Story("Updating user details")
     @Severity(SeverityLevel.BLOCKER)
     @Description("Update user details by valid user id")
     @AddUserDetails(AddUserDetailsType.DB)

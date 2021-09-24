@@ -1,7 +1,6 @@
 package com.web_final_task.tests.payment_management;
 
 import com.web_final_task.annotations.Service;
-import com.web_final_task.annotations.extentions.WireMockServerExtension;
 import com.web_final_task.entity.Payment;
 import com.web_final_task.tests.BaseRestTest;
 import com.web_final_task.utility.PaymentGenerator;
@@ -16,7 +15,6 @@ import io.restassured.response.Response;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.containing;
@@ -28,17 +26,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @Story("Payment")
 @Feature("add new payment")
 @Service(value = "Payment management")
-@ExtendWith({WireMockServerExtension.class})
 @DisplayName("Add new payments")
 class AddNewPaymentTests extends BaseRestTest {
 
     @Test
     @Severity(SeverityLevel.BLOCKER)
     @Description("Create a new payment")
-    @SneakyThrows
     void shouldAddNewPayment() {
         final Payment generatedPayment = PaymentGenerator.generatePayment(true);
-
         stubFor(post("/payment/")
                 .withRequestBody(containing(generatedPayment.getUserId().toString()))
                 .willReturn(aResponse().proxiedFrom("http://localhost:8282/")));
@@ -53,7 +48,6 @@ class AddNewPaymentTests extends BaseRestTest {
     @Issue("CP-1")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Create a new unverified payment")
-    @SneakyThrows
     void shouldNotAddNewPaymentUnverifiedUser() {
         final Payment generatedPayment = PaymentGenerator.generatePayment(false);
         stubFor(post("/payment/")
@@ -81,7 +75,6 @@ class AddNewPaymentTests extends BaseRestTest {
                         .withHeader("Content-Type", "application/json")
                         .withStatus(405)
                         .withBody(invalidInput)));
-
 
         Response response = paymentService.createNewPayment(generatedPayment, 405);
         assertThat(response.getBody().asString()).isEqualTo(invalidInput);

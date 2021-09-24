@@ -13,7 +13,6 @@ public abstract class BaseService {
     protected abstract String getServiceUrl();
 
     protected static RequestSpecification requestSpecification = new RequestSpecBuilder()
-            .addFilter(CustomAllureLogFilter.allureLogFilter().withCustomTemplate())
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
             .build();

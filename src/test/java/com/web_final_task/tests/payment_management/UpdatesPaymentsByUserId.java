@@ -33,14 +33,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @Feature("Updates all payments for a user with provided ID")
 @Service(value = "Payment management")
 @DisplayName("Update existing payments by user id")
-@ExtendWith({WireMockServerExtension.class})
 class UpdatesPaymentsByUserId extends BaseRestTest {
 
     @Test
     @Issue("CP-14")
     @Severity(SeverityLevel.BLOCKER)
-    @Description(value = "update all payments by valid user id")
     @SneakyThrows
+    @Description(value = "update all payments by valid user id")
     void updateAllPaymentsByValidUserId() {
         final long userId = getFakerWithDefaultLocale().number().numberBetween(1, 999);
         List<Payment> generatedPayments = PaymentGenerator.generateListOfPayment(2, userId);
@@ -66,8 +65,8 @@ class UpdatesPaymentsByUserId extends BaseRestTest {
     @Test
     @Issue("CP-15")
     @Severity(SeverityLevel.BLOCKER)
-    @Description(value = "update all payments by invalid user id")
     @SneakyThrows
+    @Description(value = "update all payments by invalid user id")
     void updateAllPaymentsWithEmptyListOfPayments() {
         final String invalidInput = "Invalid input";
         final long userId = getFakerWithDefaultLocale().number().numberBetween(1, 999);

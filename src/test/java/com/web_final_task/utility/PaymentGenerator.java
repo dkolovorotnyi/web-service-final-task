@@ -13,7 +13,7 @@ public class PaymentGenerator {
 
     public static Payment generatePayment(boolean verified) {
         return Payment.builder()
-                .id(Long.parseLong(getFakerWithDefaultLocale().number().digits(1)))
+                .id(getFakerWithDefaultLocale().number().numberBetween(1, 999))
                 .userId((long) getFakerWithDefaultLocale().number().numberBetween(1, 999))
                 .cardHolder(getFakerWithDefaultLocale().artist().name().toUpperCase(Locale.US))
                 .cardNumber(getFakerWithDefaultLocale().finance().creditCard())

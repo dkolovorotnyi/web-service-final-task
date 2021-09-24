@@ -16,19 +16,21 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.web_final_task.utility.CommonFaker.getFakerWithDefaultLocale;
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @Owner("Denis")
-@Feature("Receive user details by id")
+@Feature("Receive user details")
 @Service(value = "User management")
+@DisplayName("Get user details")
 class GetUserDetails extends BaseRestTest {
 
     @Test
     @Issue("CP-17")
+    @Story("Receiving user detail")
     @Severity(SeverityLevel.BLOCKER)
     @Description("Receive user details by valid user id")
     @AddUserDetails(AddUserDetailsType.DB)
@@ -42,13 +44,13 @@ class GetUserDetails extends BaseRestTest {
     }
 
     @Test
-    @Story("User management with an payment and an address")
+    @Story("Receiving user detail")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Receive user detail with address only")
     @AddUserDetails(AddUserDetailsType.DB)
     void getUserDetailsWithAddress(UserDetails userDetails) {
         final int addressId = addressRepository.getAll().size() + 1;
-        final Address generate = AddressGenerator.generate(userDetails.getId(), addressId);
+        final Address generate = AddressGenerator.generateAddress(userDetails.getId(), addressId);
         addressRepository.save(generate);
 
         GetUserDetailsRequest request = new GetUserDetailsRequest();
@@ -60,6 +62,7 @@ class GetUserDetails extends BaseRestTest {
     }
 
     @Test
+    @Story("Receiving user detail")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Receive user details by none existed user id")
     void getUserUserDetailByNoneExistedUserId() {

@@ -1,7 +1,6 @@
 package com.web_final_task.tests.payment_management;
 
 import com.web_final_task.annotations.Service;
-import com.web_final_task.annotations.extentions.WireMockServerExtension;
 import com.web_final_task.entity.Payment;
 import com.web_final_task.tests.BaseRestTest;
 import com.web_final_task.utility.PaymentGenerator;
@@ -15,7 +14,6 @@ import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.delete;
@@ -26,7 +24,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @Story("Payment")
 @Feature("Deletes all payments for user by provided ID")
 @Service(value = "Payment management")
-@ExtendWith({WireMockServerExtension.class})
 @DisplayName("Delete payments")
 class DeletePaymentTest extends BaseRestTest {
 

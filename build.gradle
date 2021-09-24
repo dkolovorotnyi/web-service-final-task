@@ -6,14 +6,9 @@ plugins {
 group 'com.web_final_task'
 version '1.2'
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
 repositories {
     mavenCentral()
 }
-
-
 
 ext {
     restAssuredVersion = "4.4.0"
@@ -56,7 +51,6 @@ tasks.withType(JavaCompile) {
 
 test {
     useJUnitPlatform()
-    maxParallelForks = 1
 }
 
 allure {

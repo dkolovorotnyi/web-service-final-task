@@ -2,7 +2,6 @@ package com.web_final_task.tests.payment_management;
 
 import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder;
 import com.web_final_task.annotations.Service;
-import com.web_final_task.annotations.extentions.WireMockServerExtension;
 import com.web_final_task.entity.Payment;
 import com.web_final_task.tests.BaseRestTest;
 import com.web_final_task.utility.PaymentGenerator;
@@ -17,7 +16,6 @@ import io.restassured.response.Response;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.File;
 
@@ -33,14 +31,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @Feature("Update existing payment")
 @Service(value = "Payment management")
 @DisplayName("Update existing payments")
-@ExtendWith({WireMockServerExtension.class})
 class UpdateExistingPayment extends BaseRestTest {
 
     @Test
     @Issue("CP-12")
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Update payment with valid data")
     @SneakyThrows
+    @Description("Update payment with valid data")
     void updatePayments() {
         final Payment generatedPayments = PaymentGenerator.generatePayment(true);
         objectMapper.writeValue(new File(GENERATED_JSON_PATH +
@@ -60,8 +57,8 @@ class UpdateExistingPayment extends BaseRestTest {
     @Test
     @Issue("CP-13")
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Update payment with invalid data")
     @SneakyThrows
+    @Description("Update payment with invalid data")
     void updatePaymentWithInvalidData() {
         final Payment generatedPayments = PaymentGenerator.generatePayment(true);
         paymentRepository.save(generatedPayments);
@@ -84,8 +81,8 @@ class UpdateExistingPayment extends BaseRestTest {
     @Test
     @Issue("CP-14")
     @Severity(SeverityLevel.BLOCKER)
-    @Description("Update payment with none existed id")
     @SneakyThrows
+    @Description("Update payment with none existed id")
     void updatePaymentWithNoneExistedId() {
         final String responseMessage = "Payment was not found";
         final Payment payment = PaymentGenerator.generatePayment(true);
