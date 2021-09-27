@@ -30,7 +30,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 @Owner("Denis")
 @Feature("Remove user details ")
 @Service(value = "User management")
-@DisplayName("Delete user details")
+@DisplayName("Delete user details e2e")
 class DeleteUserDetailsTest extends BaseRestTest {
 
     @Test

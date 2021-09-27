@@ -15,6 +15,7 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -22,6 +23,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @Owner("Denis")
 @Feature("Update user details")
 @Service(value = "User management")
+@DisplayName("Update user details e2e")
 class UpdateUserDetails extends BaseRestTest {
 
     @Test

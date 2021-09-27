@@ -19,8 +19,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Owner("Denis")
 @Feature("Create user details")
-@Service(value = "User management e2e")
-@DisplayName("Create user details")
+@Service(value = "User management")
+@DisplayName("Create user details e2e")
 class CreateUserDetailsTest extends BaseRestTest {
 
     @Test
