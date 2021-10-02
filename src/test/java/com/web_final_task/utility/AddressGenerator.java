@@ -18,16 +18,4 @@ public class AddressGenerator {
                 .state(State.DC.value())
                 .build();
     }
-
-    public static Address generateAddress(long userId) {
-        return Address.builder()
-                .id(Long.valueOf(getFakerWithDefaultLocale().number().numberBetween(1, 999)))
-                .userId(userId)
-                .addressLine1(getFakerWithDefaultLocale().address().streetAddress())
-                .addressLine2(getFakerWithDefaultLocale().address().streetAddress())
-                .city(getFakerWithDefaultLocale().address().city())
-                .zip(getFakerWithDefaultLocale().address().zipCode())
-                .state(State.DC.value())
-                .build();
-    }
 }

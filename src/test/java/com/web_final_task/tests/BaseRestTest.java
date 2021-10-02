@@ -9,12 +9,12 @@ import com.web_final_task.config.database.IPaymentRepository;
 import com.web_final_task.config.database.PaymentRepository;
 import com.web_final_task.service.PaymentManagementService;
 import com.web_final_task.service.UserManagementService;
-import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.File;
+import java.io.IOException;
 
 @ExtendWith({ClearDatabase.class, WireMockServerExtension.class})
 public class BaseRestTest {
@@ -29,8 +29,7 @@ public class BaseRestTest {
 
 
     @AfterAll
-    @SneakyThrows
-    static void deleteMockJsons() {
+    static void deleteMockJsons() throws IOException {
         FileUtils.cleanDirectory(new File(GENERATED_JSON_PATH));
     }
 }

@@ -7,8 +7,6 @@ import java.util.List;
 public interface IUserRepository {
 
     void createUserDetails(UserDetails userDetails);
-
     void deleteUser(long id);
-
     List<UserDetails> getAll();
 }

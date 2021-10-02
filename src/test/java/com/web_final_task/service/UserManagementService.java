@@ -1,6 +1,5 @@
 package com.web_final_task.service;
 
-
 import com.web_final_task.entity.xml.CreateUserRequest;
 import com.web_final_task.entity.xml.CreateUserResponse;
 import com.web_final_task.entity.xml.DeleteUserRequest;
@@ -29,6 +28,5 @@ public class UserManagementService {
     public DeleteUserResponse deleteUserDetails(DeleteUserRequest request) {
         return service.getUsersPortSoap11().deleteUser(request);
     }
-
 }
 

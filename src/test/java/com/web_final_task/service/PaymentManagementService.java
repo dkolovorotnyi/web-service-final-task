@@ -1,12 +1,13 @@
 package com.web_final_task.service;
 
-import com.web_final_task.config.CustomAllureLogFilter;
+import com.web_final_task.filters.CustomAllureLogFilter;
 import com.web_final_task.entity.Payment;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 import java.util.List;
 
+import static com.web_final_task.config.ConfigManager.applicationConfig;
 import static io.restassured.RestAssured.given;
 
 public class PaymentManagementService extends BaseService {
@@ -35,7 +36,6 @@ public class PaymentManagementService extends BaseService {
                 .assertThat()
                 .spec(responseSpecification)
                 .statusCode(statusCode)
-                .log().body()
                 .extract().response();
     }
 
@@ -84,6 +84,6 @@ public class PaymentManagementService extends BaseService {
 
     @Override
     protected String getServiceUrl() {
-        return "http://localhost:7878";
+        return applicationConfig().getPaymentUrl();
     }
 }

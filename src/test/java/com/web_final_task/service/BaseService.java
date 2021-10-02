@@ -1,6 +1,5 @@
 package com.web_final_task.service;
 
-import com.web_final_task.config.CustomAllureLogFilter;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;

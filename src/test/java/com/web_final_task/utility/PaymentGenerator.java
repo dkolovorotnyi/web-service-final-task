@@ -19,7 +19,7 @@ public class PaymentGenerator {
                 .cardNumber(getFakerWithDefaultLocale().finance().creditCard())
                 .cvv(valueOf(getFakerWithDefaultLocale().number().randomNumber(9, false)))
                 .expiryMonth(12)
-                .expiryYear(12)
+                .expiryYear(99)
                 .verified(verified)
                 .build();
     }

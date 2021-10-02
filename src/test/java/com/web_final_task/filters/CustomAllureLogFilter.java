@@ -1,4 +1,4 @@
-package com.web_final_task.config;
+package com.web_final_task.filters;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 

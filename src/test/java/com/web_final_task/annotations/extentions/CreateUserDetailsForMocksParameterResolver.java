@@ -16,9 +16,7 @@ import static java.util.Optional.ofNullable;
 public class CreateUserDetailsForMocksParameterResolver implements ParameterResolver, AfterEachCallback {
 
     private IUserRepository userRepository = new UserRepository();
-
     private UserDetails userDetails = null;
-
 
     @Override
     public void afterEach(ExtensionContext context) {

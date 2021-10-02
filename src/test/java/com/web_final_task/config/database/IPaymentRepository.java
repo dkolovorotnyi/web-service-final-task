@@ -7,10 +7,6 @@ import java.util.List;
 public interface IPaymentRepository {
 
     void save(Payment payment);
-
     void deletePayment(long id);
-
     List<Payment> getAll();
-
-    Payment findById(long id);
 }

@@ -6,8 +6,9 @@ import java.util.Locale;
 
 public class CommonFaker {
 
-    public static Faker getFakerWithDefaultLocale() {
-        return new Faker(Locale.US);
-    }
+  private static final Faker faker = new Faker(Locale.US);
 
+    public static Faker getFakerWithDefaultLocale() {
+        return faker;
+    }
 }

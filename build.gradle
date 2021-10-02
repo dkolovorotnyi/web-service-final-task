@@ -19,28 +19,36 @@ ext {
     fakerVersion = "1.0.1"
     junitVersion = "5.7.1"
     jdbcVersion = "5.3.9"
+    ownerVersion = '1.0.12'
 }
 
 dependencies {
     testImplementation 'org.jetbrains:annotations:20.1.0'
+
+
     testImplementation("io.qameta.allure:allure-java-commons:${allureVersion}",
             "io.qameta.allure:allure-rest-assured:${allureVersion}",
             "io.rest-assured:rest-assured:${restAssuredVersion}",
             "org.assertj:assertj-core:${assertJVersion}",
             "org.slf4j:slf4j-simple:${slfjSimleVersion}",
             "com.github.tomakehurst:wiremock-jre8:${wiremockVersion}",
+            "mysql:mysql-connector-java:8.0.25",
+            "org.aeonbits.owner:owner-java8:${ownerVersion}"
+            ,
             "javax.ws.rs:javax.ws.rs-api:2.1.1",
-
 
             "org.junit.jupiter:junit-jupiter-api:${junitVersion}",
             "org.junit.jupiter:junit-jupiter-params:${junitVersion}",
             "com.github.javafaker:javafaker:${fakerVersion}",
             "org.springframework:spring-jdbc:${jdbcVersion}",
-            "mysql:mysql-connector-java:8.0.25"
+
     )
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
     testCompileOnly 'org.projectlombok:lombok:1.18.8'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.8'
+
+
+
 }
 
 tasks.withType(JavaCompile) {
